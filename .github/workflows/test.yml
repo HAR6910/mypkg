@@ -1,4 +1,4 @@
-name: bash
+name: test
 on: push
 jobs:
   test:
