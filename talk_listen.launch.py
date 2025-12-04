@@ -15,5 +15,5 @@ def generate_launch_description():
         executable='listener',
         output='screen'        #ログを端末に出すための設定
         )
-    
+
     return launch.LaunchDescription([talker, listener])
