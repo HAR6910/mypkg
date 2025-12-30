@@ -1,17 +1,38 @@
 name: test
-on: push
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
 jobs:
-  test:
+  build_and_test:
     runs-on: ubuntu-22.04
-    container: ryuichiueda/ubuntu22.04-ros2:latest
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup ROS 2
+        uses: ros-tooling/setup-ros@v0.7
         with:
-          python^version: ${{ matrix.python-version }}
-      - name: build and test
+          distribution: humble
+
+      - name: Install dependencies
         run: |
-          rsync -av ./ /root/ros2_ws/src/mypkg/
-          cd /root/ros2_ws
-          bash -xv ./src/mypkg/test/test.bash /root
+          sudo apt update
+          rosdep update
+          rosdep install --from-paths . --ignore-src -r -y
+
+      - name: Build
+        run: |
+          source /opt/ros/humble/setup.bash
+          colcon build
+
+      - name: Test
+        run: |
+          source /opt/ros/humble/setup.bash
+          source install/setup.bash
+          colcon test
+          colcon test-result --verbose
+
