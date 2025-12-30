@@ -77,6 +77,6 @@ $ ros2 run mypkg listener
 
 ---
 
-##参考文献
-- [ロジック関数](https://note.com/bunsekiya_tech/n/n1b713f661cd4)
-- [コールバック関数](https://qiita.com/nakajima417/items/4d0c2d46ff82351549e6)
+## 参考文献
+- [コードの変数や関数・ロジックを管理する② -関数の使用と管理について-](https://note.com/bunsekiya_tech/n/n1b713f661cd4)
+- [わかりやすく解説！コールバック関数の理解とその使い方](https://qiita.com/nakajima417/items/4d0c2d46ff82351549e6)
