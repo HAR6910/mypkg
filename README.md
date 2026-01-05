@@ -10,7 +10,7 @@
 
 ## ノードの説明
 
-### talker.py
+### talker
 - 役割：文字列メッセージを一定周期で publish するノード
 - ノード名：`talker`
 - パブリッシュするトピック：`/chatter`
@@ -18,7 +18,7 @@
 
 ---
 
-### listener.py
+### listener
 - 役割：`/chatter` トピックを subscribe し、受信内容を表示するノード
 - ノード名：`listener`
 - サブスクライブするトピック：`/chatter`
@@ -38,28 +38,25 @@
 
 ---
 
-## 実行方法
-
-### 1.同時に起動させる場合
+## 動作確認
 
 ```
-＄ros2 launch mypkg bowling_launch.py
+$ ros2 launch mypkg bowling_launch.py
+[INFO] [launch]: All log files can be found below /home/har6910/.ros/log/2026-01-05-16-05-35-356891-HAR-1152
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [listener-1]: process started with pid [1160]
+[INFO] [talker-2]: process started with pid [1163]
+[listener-1] [INFO] [1767596736.211855222] [bowling_listener]: Bowling listener started
+[talker-2] [INFO] [1767596736.211940173] [bowling_talker]: Bowling talker started
+[talker-2] [INFO] [1767596737.195359846] [bowling_talker]: Frame 1 Roll 1: 8
+[listener-1] [INFO] [1767596737.196651398] [bowling_listener]: Current Frame: 1 | Total Score: 0
+[talker-2] [INFO] [1767596738.195070837] [bowling_talker]: Frame 1 Roll 2: 0
+[listener-1] [INFO] [1767596738.195663181] [bowling_listener]: Current Frame: 1 | Total Score: 8
+[talker-2] [INFO] [1767596739.196072791] [bowling_talker]: Frame 2 Roll 1: 2
+[listener-1] [INFO] [1767596739.197601118] [bowling_listener]: Current Frame: 2 | Total Score: 8
+[talker-2] [INFO] [1767596740.196811215] [bowling_talker]: Frame 2 Roll 2: 3
 ```
-
-### 2.別々に起動させる場合
-- 端末１でtalkerの起動
-```
-$ ros2 run mypkg talker
-```
-
-上記のようにtalkerを起動するとその回で倒したピンの数が配信されます。
-
-- 端末２でlistenerの起動
-```
-$ ros2 run mypkg listener
-```
-
-上記のようにlistenerを起動するとtalkerに応じて合計スコアが常に更新され、配信します。
+表記が長いため、上記のように略させていただきます。
 
 ---
 
